@@ -8,6 +8,10 @@ The aim is to provide some statistical data like mean, max, standard dev etc. wh
 
 Not only, thanks to puppeteer API it's able to emulated different client devices and also different network conditions, so it is useful to emulate over the internet network condition in the same computer where you run the script. But you have to make attention to replicate the exact server configuration that you use in the production, for example with docker.
 
+### Example of result
+
+![Example of result](https://lh3.googleusercontent.com/CRv0EMMJ9dPl-6_kCxf5KA3Q6OYN4hak1vJpCIMKFN21HxMPDsvwVh3fzldDyjxiQ5YUibERndpgRj_QRfjVZGA2BvRHKdASiM_LRDbLTN1e8aWubDSi64BFxzKftg3XANuAkZflDFk=w2400)
+
 ## How does it work?
 
 It works with [performance web api](https://developer.mozilla.org/en-US/docs/Web/API/Performance "look at MDN Web docs"), puppeteer reads the browser console and then collects all the data and after some iterations computes the statical result. The network condition and device emulation are provided by the puppeteer API.

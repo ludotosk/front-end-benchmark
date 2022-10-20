@@ -76,6 +76,14 @@ performance
   .forEach((json) => console.log(json));
 ```
 
+You have also to put an element with the id="loaded" using, for example, the script that I leave here, in this way the test script is able to understand that this page is done and is time to pass to the next.
+
+```javascript
+var span = document.createElement("span");
+span.setAttribute("id", "loaded");
+document.body.appendChild(span);
+```
+
 #### One example of code that I used on svelte 3 and on vue 3
 
 I putted this piece of code on the index.html page of my website, pay attention because this work if you use vite and is routing system may not work using other bundlers.

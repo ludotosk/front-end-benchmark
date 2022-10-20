@@ -52,10 +52,13 @@ async function main() {
             });
         }
 
-        page.on('console', function(msg) { try { log.push(JSON.parse(msg.text())); } catch {
-                (argv.v == true) && console.log(msg.text()) } });
+        page.on('console', function(msg) {
+            try { log.push(JSON.parse(msg.text())); } catch {
+                (argv.v == true) && console.log(msg.text())
+            }
+        });
         await page.goto(argv.url);
-        await page.waitForSelector('#carico');
+        await page.waitForSelector('#loaded');
 
         page.close();
     }

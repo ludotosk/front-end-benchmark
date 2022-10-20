@@ -78,7 +78,7 @@ performance
 
 #### One example of code that I used on svelte 3 and on vue 3
 
-I put this piece of code on the index.html page of my website, pay attention because this work if you use vite and is routing system may not work using other bundlers.
+I putted this piece of code on the index.html page of my website, pay attention because this work if you use vite and is routing system may not work using other bundlers.
 
 ```javascript
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   const config = { attributes: false, childList: true, subtree: true };
 
-  observer.observe(tbody, config);
+  observer.observe(target, config);
 });
 ```
 

@@ -76,7 +76,7 @@ performance
   .forEach((json) => console.log(json));
 ```
 
-## One example of code that I used on svelte 3 and on vue 3
+#### One example of code that I used on svelte 3 and on vue 3
 
 I put this piece of code on the index.html page of my website, pay attention because this work if you use vite and is routing system may not work using other bundlers.
 

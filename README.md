@@ -26,7 +26,7 @@ First of all, you to install the dependencies with:
 npm install
 ```
 
-To run the script you have to call the index.js file with node . and set these two **mandatory** arguments *url* and *name*.
+To run the script you have to call the index.js file with node . and set these two **mandatory** arguments _url_ and _name_.
 
 ```bash
 node . --url http://localhost/ --name example
@@ -34,21 +34,21 @@ node . --url http://localhost/ --name example
 
 ### List of argument
 
-| Argument      | Type     | Action                                                                                                                                                |
-| ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| --url         | String   | Set the page you want to test                                                                                                                         | 
-| --names       | String   | Give's you the result for the corresponding marker name, you can put more than one values                                                             |
-| --i           | Integer  | Set the number of iterations, default value 50                                                                                                        |
-| --dw          | Floating | Set emulated download speed MB/S, default value 110.24 MB/S                                                                                           |
-| --up          | Floating | Set emulated upload speed MB/S, default value 60.13 MB/S                                                                                              |
-| --lt          | Integer  | Set emulated latency in ms, default 19 ms                                                                                                             |
-| --headless    | Boolean  | Set puppeteer in headless mode, default value false                                                                                                   |
-| --v           | Boolean  | Verbose mode, print the browser console data in the cli default value true                                                                            |
-| --cpu         | Integer  | Simulate cpu throttling, default 1 see [puppeteer](https://github.com/puppeteer/puppeteer/blob/main/docs/api.md#pageemulatecputhrottlingfactor) API's |
-| --nexus       | Boolean  | With true puppeteer emulates the Nexus 5, false if you want set manual values                                                                         |
-| --w           | Integer  | **Only with --nexus false**, set the width of the emulated window in px default value 1920                                                            |
-| --h           | Integer  | **Only with --nexus false**, set the height of the emulated window in px default value 1080                                                           |
-| --mobile      | Boolean  | **Only with --nexus false**, define the type of device to emulate default false                                                                       |
+| Argument   | Type     | Action                                                                                                                                                |
+| ---------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --url      | String   | Set the page you want to test                                                                                                                         |
+| --names    | String   | Give's you the result for the corresponding marker name, you can put more than one values                                                             |
+| --i        | Integer  | Set the number of iterations, default value 50                                                                                                        |
+| --dw       | Floating | Set emulated download speed MB/S, default value 110.24 MB/S                                                                                           |
+| --up       | Floating | Set emulated upload speed MB/S, default value 60.13 MB/S                                                                                              |
+| --lt       | Integer  | Set emulated latency in ms, default 19 ms                                                                                                             |
+| --headless | Boolean  | Set puppeteer in headless mode, default value false                                                                                                   |
+| --v        | Boolean  | Verbose mode, print the browser console data in the cli default value true                                                                            |
+| --cpu      | Integer  | Simulate cpu throttling, default 1 see [puppeteer](https://github.com/puppeteer/puppeteer/blob/main/docs/api.md#pageemulatecputhrottlingfactor) API's |
+| --nexus    | Boolean  | With true puppeteer emulates the Nexus 5, false if you want set manual values                                                                         |
+| --w        | Integer  | **Only with --nexus false**, set the width of the emulated window in px default value 1920                                                            |
+| --h        | Integer  | **Only with --nexus false**, set the height of the emulated window in px default value 1080                                                           |
+| --mobile   | Boolean  | **Only with --nexus false**, define the type of device to emulate default false                                                                       |
 
 #### Some examples
 
@@ -64,15 +64,41 @@ As I told before you need to make some changes in the front-end code to use this
 
 ```javascript
 //set a marker named example 1
-performance.mark("example 1")
+performance.mark("example 1");
 //set a marker named example 2
-perofrmance.mark("example 2")
+perofrmance.mark("example 2");
 //compute the difference between example 1 and example 2 and name it as diff
 performance.measure("diff", "example 1", "example 2");
 // now we print all the entries in the console make sure to run this after the mark and measure methods
 performance
-    .getEntries()
-    .map((entry) => JSON.stringify(entry, null, 2))
-    .forEach((json) => console.log(json));
+  .getEntries()
+  .map((entry) => JSON.stringify(entry, null, 2))
+  .forEach((json) => console.log(json));
 ```
 
+## One example of code that I used on svelte 3 and on vue 3
+
+I put this piece of code on the index.html page of my website, pay attention because this work if you use vite and is routing system may not work using other bundlers.
+
+```javascript
+document.addEventListener("DOMContentLoaded", (event) => {
+  const target = document.getElementById("target");
+  const observer = new MutationObserver(() => {
+    performance.mark("target");
+    performance
+      .getEntries()
+      .map((entry) => JSON.stringify(entry, null, 2))
+      .forEach((json) => console.log(json));
+
+    var span = document.createElement("span");
+    span.setAttribute("id", "loaded");
+    document.body.appendChild(span);
+  });
+
+  const config = { attributes: false, childList: true, subtree: true };
+
+  observer.observe(tbody, config);
+});
+```
+
+In this example, I'm targeting a table that has data on the tbody that loads asynchronous, so in order to see when the table is completely loaded because it is the latest element that loads on the page that I tested. I used the event listener in order to load the script after the dom is rendered, otherwise when you try to run it will fail because it will not find the element in the dom.

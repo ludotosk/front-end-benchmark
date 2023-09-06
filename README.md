@@ -83,7 +83,7 @@ document.body.appendChild(span);
 
 #### One example of code that I used on Svelte 3 and on Vue 3
 
-I putted this piece of code on the index.html page of my website, pay attention because this works if you use Vite and its routing system may not work using other bundlers.
+I used this code on the index.html page of my website, pay attention because this works if you use Vite and its routing system may not work using other bundlers.
 
 ```javascript
 document.addEventListener("DOMContentLoaded", (event) => {

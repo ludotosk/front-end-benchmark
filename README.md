@@ -1,12 +1,9 @@
 # Puppeteer based front-end benchmark
-
-Ignore the lighthouse-based script, it's here just because I won't delete it (and it's part of my bachelor's degree thesis).
-
 ## What is the aim of this script?
 
-The aim is to provide some statistical data like mean, max, standard dev etc. when a function in a web application is executed. With this script you can compute the execution time of function, or you can use it to see you much time goes from the download of the html to the execution time of a function. For example I have used this script to improve my SEO in a vue.js application putting the [performance API methods](https://developer.mozilla.org/en-US/docs/Web/API/Performance "look at MDN Web docs") in a specific hook.
+The aim is to provide some statistical data like mean, max, standard dev etc. when a function in a web application is executed. With this script, you can compute the execution time of a function, or you can use it to see you much time goes from the download of the HTML to the execution time of a function. For example, I have used this script to improve my SEO in a vue.js application by putting the [performance API methods](https://developer.mozilla.org/en-US/docs/Web/API/Performance "look at MDN Web docs") in a specific hook.
 
-Not only, thanks to puppeteer API's it's able to emulated different client devices and also different network conditions, so it is useful to emulate over the internet network condition in the same computer where you run the script. But you have to make attention to replicate the exact server configuration that you use in the production, for example with docker.
+Not only that, thanks to Puppeteer API it's able to emulate different client devices and also different network conditions, so it is useful to emulate over the internet network conditions in the same computer where you run the script. But you have to pay attention to replicate the exact server configuration that you use in the production, for example with docker.
 
 ### Example of result
 
@@ -14,7 +11,7 @@ Not only, thanks to puppeteer API's it's able to emulated different client devic
 
 ## How does it work?
 
-It works with [performance web api](https://developer.mozilla.org/en-US/docs/Web/API/Performance "look at MDN Web docs"), puppeteer reads the browser console and then collects all the data and after some iterations computes the statical result. The simulated network condition and device emulation are provided by the puppeteer API's.
+It works with [performance web api](https://developer.mozilla.org/en-US/docs/Web/API/Performance "look at MDN Web docs"), Puppeteer reads the browser console and then collects all the data and after some iterations computes the statical result. The simulated network condition and device emulation are provided by the puppeteer API's.
 
 ## Istructions
 
@@ -84,9 +81,9 @@ span.setAttribute("id", "loaded");
 document.body.appendChild(span);
 ```
 
-#### One example of code that I used on svelte 3 and on vue 3
+#### One example of code that I used on Svelte 3 and on Vue 3
 
-I putted this piece of code on the index.html page of my website, pay attention because this work if you use vite and is routing system may not work using other bundlers.
+I putted this piece of code on the index.html page of my website, pay attention because this works if you use Vite and its routing system may not work using other bundlers.
 
 ```javascript
 document.addEventListener("DOMContentLoaded", (event) => {
